@@ -1,3 +1,5 @@
+
+
 const express = require("express");
 const app = express();
 app.use(express.json()); // middleware for accessing reading the req.body notes from postman
@@ -15,6 +17,7 @@ app.get("/notes", (req, res) => {
 /// select method (Post)
 // set url link localhost:3000
 /// select body and select raw for make body object
+
 
 
 app.listen(3000, () => {
