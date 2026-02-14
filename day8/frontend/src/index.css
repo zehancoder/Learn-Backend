@@ -29,6 +29,7 @@ html{
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  padding: 20px 20px;
 }
 .main-content{
   padding: 8px 20px;
