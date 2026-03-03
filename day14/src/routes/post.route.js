@@ -5,5 +5,7 @@ const upload = multer({ storage: multer.memoryStorage() })
 const postRouter = express.Router();
 postRouter.post('/', upload.single('image'), postController.postController);
 
-
-module.exports = postRouter;
+postRouter.get('/', postController.getPostsController);
+//geeting indevisuals post details
+postRouter.get('/:postId', postController.postDetailController)
+module.exports = postRouter 
