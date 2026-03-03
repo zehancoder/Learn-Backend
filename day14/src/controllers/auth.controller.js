@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const userModel = require('../models/user.model');
-const crypto = require('crypto')
+const bcrypt = require('bcryptjs')
 async function registerController(req, res) {
     const { email, password, username, bio } = req.body;
 
@@ -12,10 +12,10 @@ async function registerController(req, res) {
     });
     if (isUserExist) {
         return res.status(409).json({
-            message: isUserExist.email !== undefined ? "user already exist with this email address" : "user already exist with this username"
+            message: isUserExist.email === email ? "user already exist with this email address" : "user already exist with this username"
         });
     }
-    const hashPassword = crypto.createHash('md5').update(password).digest('hex');
+    const hashPassword =await bcrypt.hash(password, 10)
     const newUser = await userModel.create({
         email,
         hashPassword: hashPassword,
@@ -47,7 +47,7 @@ async function loginController(req, res) {
             message: "user not exist with username or email"
         });
     }
-    const isPassMatch = crypto.createHash('md5').update(password).digest('hex') === isUserExist.password;
+    const isPassMatch = await bcrypt.compare(password, isUserExist.password)
     if (!isPassMatch) {
         return res.status(404).json({
             message: "invalid password try again"

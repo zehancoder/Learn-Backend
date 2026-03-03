@@ -14,10 +14,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         require: [true, 'Password is require']
     },
-    img_url: {
-        type: String,
-        required: [true, 'Profile Image is required']
-    },
+    img_url: String,
     bio: String,
 });
 const userModel = mongoose.model('day14', userSchema);
