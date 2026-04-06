@@ -34,7 +34,7 @@ async function postController(req, res) {
     const post = await postModel.create({
         caption: caption,
         img_url: file.url,
-        user: decode.id
+        user: req.user.id
 
     });
     res.status(201).json({

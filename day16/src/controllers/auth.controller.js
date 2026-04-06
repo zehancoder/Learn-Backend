@@ -15,7 +15,7 @@ async function registerController(req, res) {
             message: isUserExist.email === email ? "user already exist with this email address" : "user already exist with this username"
         });
     }
-    const hashPassword =await bcrypt.hash(password, 10)
+    const hashPassword = await bcrypt.hash(password, 10)
     const newUser = await userModel.create({
         email,
         hashPassword: hashPassword,
