@@ -124,15 +124,15 @@ export async function verifyEmail(req, res) {
 }
 
 // get-me controller
-export async function getMeController(req, res){
+export async function getMeController(req, res) {
   const user = req.user;
-  console.log(user)
-  if(!user){
+  console.log(user);
+  if (!user) {
     return res.status(409).json({
       message: "Please login/register for continue this website",
       success: false,
-      err: "Token no found/verified please register/login"
-    })
+      err: "Token no found/verified please register/login",
+    });
   }
   res.status(200).json({
     message: "User successfuly fetch",
@@ -141,7 +141,7 @@ export async function getMeController(req, res){
       id: user._id,
       username: user.username,
       email: user.email,
-      verified: user.verified
-    }
-  })
+      verified: user.verified,
+    },
+  });
 }
